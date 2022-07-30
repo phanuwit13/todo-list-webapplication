@@ -1,4 +1,9 @@
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+// import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import gql from "graphql-tag";
+
 import * as _ from "lodash";
 
 //type
@@ -6,15 +11,18 @@ import actionServiceTypes from "./model";
 
 const actionService = {
   Login: async (username: string, password: string) => {
-    // Clear data of example in Redux
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const LOGIN_QUERY = gql`
@@ -56,15 +64,19 @@ const actionService = {
     }
   },
   Register: async (username: string, password: string) => {
-    // Clear data of example in Redux
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const REGISTER_QUERY = gql`
@@ -75,6 +87,7 @@ const actionService = {
         }
       }
     `;
+
     try {
       let result = await client.mutate({
         mutation: REGISTER_QUERY,
@@ -104,7 +117,6 @@ const actionService = {
     }
   },
   GetTodoList: async () => {
-    // Clear data of example in Redux
     const username = window.localStorage.getItem("user");
     if (!username) {
       return {
@@ -112,14 +124,19 @@ const actionService = {
         data: "",
       };
     }
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const TODO_LIST_QUERY = gql`
@@ -171,7 +188,6 @@ const actionService = {
     }
   },
   AddTodoList: async (todoTask: actionServiceTypes.AddTodoListRequest) => {
-    // Clear data of example in Redux
     const username = window.localStorage.getItem("user");
     if (!username) {
       return {
@@ -179,14 +195,18 @@ const actionService = {
         data: "",
       };
     }
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const ADD_TODO_QUERY = gql`
@@ -246,7 +266,6 @@ const actionService = {
     }
   },
   DeleteTodoList: async (id: number) => {
-    // Clear data of example in Redux
     const username = window.localStorage.getItem("user");
     if (!username) {
       return {
@@ -254,14 +273,18 @@ const actionService = {
         data: "",
       };
     }
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const DELETE_TODO_QUERY = gql`
@@ -310,14 +333,19 @@ const actionService = {
         data: "",
       };
     }
-    const client = new ApolloClient({
-      uri: `https://darling-bird-58.hasura.app/v1/graphql`,
-      cache: new InMemoryCache(),
+    const httpLink = createHttpLink({
+      uri: "https://darling-bird-58.hasura.app/v1/graphql",
       headers: {
         "x-hasura-admin-secret":
           "qF9GGL5Y7eMZvhOluN1r0AmijwS2DWuYF3i61BHGfGxVG6wyKwp3pye7P1f3FyjP",
         "content-type": "application/json",
       },
+    });
+    const cache = new InMemoryCache();
+
+    const client = new ApolloClient({
+      link: httpLink,
+      cache,
     });
 
     const UPDATE_TODO_QUERY = gql`
@@ -374,9 +402,9 @@ const actionService = {
     }
   },
   Logout: () => {
-    window.localStorage.removeItem('user')
-    window.location.href = '/login'
-  }
+    window.localStorage.removeItem("user");
+    window.location.href = "/login";
+  },
 };
 
 export default actionService;
