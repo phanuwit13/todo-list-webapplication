@@ -15,7 +15,7 @@
     "@types/lodash": "^4.14.182",
     "core-js": "^3.19.3",
     "dayjs": "^1.11.4",
-    "graphql": "^16.0.0",
+    "graphql": "^16.5.0",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "sweetalert2": "^11.4.24",
