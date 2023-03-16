@@ -6,16 +6,14 @@
       <div
         class="w-full relative bg-white rounded-[16px] shadow dark:border md:mt-0 sm:max-w-[395px] dark:bg-gray-800 dark:border-gray-700 h-[700px] overflow-hidden"
       >
-        <LayoutHeader :date="date" :list="list" :openModal="openModal" />
+        <LayoutHeader :date="date" :openModal="openModal" :list="list" />
         <div
           class="px-[20px] mt-[50px] overflow-y-scroll max-h-[460px]"
           v-if="!taskLoading"
         >
           <div>
-            <div class="w-fit my-6 text-xl font-semibold">
-              TODO TASKS
-            </div>
-            <div v-for="(i, index) in list.false" :key="index">
+            <div class="w-fit my-6 text-xl font-semibold">DONE TASKS</div>
+            <div v-for="(i, index) in list.true" :key="index">
               <div
                 class="mb-5 rounded-lg px-4 py-2 flex items-center justify-between relative shadow"
                 :class="checkColorStatus(i.todo_status, i.todo_success)"
@@ -125,7 +123,7 @@ export default defineComponent({
     });
     const getList = async () => {
       taskLoading.value = true;
-      let response = await actionService.GetTodoList(false);
+      let response = await actionService.GetTodoList(true);
       taskLoading.value = false;
       if (response.success) {
         list.value = response.data;
