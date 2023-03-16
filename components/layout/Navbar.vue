@@ -22,14 +22,17 @@
         Done
       </div>
     </NuxtLink>
-    <div class="flex flex-col items-center gap-[2px] cursor-pointer" @click="actionService">
+    <div
+      class="flex flex-col items-center gap-[2px] cursor-pointer"
+      @click="actionService"
+    >
       <div><IconLogoutIcon /></div>
       <div class="text-[10px] text-[#d1d2d6]">Logout</div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import actionService from "../../action";
 
 export default {
@@ -37,7 +40,7 @@ export default {
     return {};
   },
   methods: {
-    checkCurrentPath: function (path: string) {
+    checkCurrentPath: function (path) {
       return this.$router.currentRoute.path === path
         ? { color: "#4f46e5", class: "text-[#4f46e5]" }
         : { color: "#d1d2d6", class: "text-[#d1d2d6]" };

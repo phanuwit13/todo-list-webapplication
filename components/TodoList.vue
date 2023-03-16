@@ -125,7 +125,7 @@ export default defineComponent({
     });
     const getList = async () => {
       taskLoading.value = true;
-      let response = await actionService.GetTodoList(false);
+      let response = await actionService.GetTodoList();
       taskLoading.value = false;
       if (response.success) {
         list.value = response.data;
